@@ -8,13 +8,13 @@ import { DivApp } from './styled/styled'
 
 
 function App() {
-
+  const [user, setUser] = useState('')
   return (
     <DivApp className="App">
       <Routes>
         <Route path='/' element={<RegisterPage/>}/>
-        <Route path='/dashboard' element={<DashBoard/>}/>
-        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/dashboard' element={<DashBoard user={user}/>}/>
+        <Route path='/login' element={<LoginPage setUser={setUser}/>} />
       </Routes>
     </DivApp>
   )

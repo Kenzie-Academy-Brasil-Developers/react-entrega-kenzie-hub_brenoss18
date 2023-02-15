@@ -1,8 +1,8 @@
-import { Header, Main, Section } from "../../styled/styled"
+import { Header, HeaderDashboard, Main, Section } from '../../styled/styled'
 import logo from '../../assets/Logo.svg'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-function DashBoard (){
+function DashBoard ({user}){
     const navigate = useNavigate()
     function logoOut (){
         
@@ -11,17 +11,19 @@ function DashBoard (){
     }
     return (
         <>
-        <Header>
-            <div className="itensHeader">
-                <img src={logo} alt="" />
+        <HeaderDashboard>
+            <div className='itensHeader'>
+                <img src={logo} alt='' />
                 <button onClick={logoOut}>Sair</button>
             </div>
-        </Header>
+        </HeaderDashboard>
+
         <Main>
-            <h3>Olá, Breno</h3>
-            <p>Terceiro módulo, React.</p>
+            <h3>Olá, {user.name}</h3>
+            <p>{user.course_module}</p>
 
         </Main>
+        
             <Section>
                 <h3>Que Pena Estamos em desenvolvimento :( </h3>
                 <p>Nossa aplicação está em desenvolvimento,

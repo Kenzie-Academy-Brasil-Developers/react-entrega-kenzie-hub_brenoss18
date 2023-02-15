@@ -1,10 +1,10 @@
 import logo from '../../assets/Logo.svg'
 import { FormLogin, HeaderLogin, LogoImg } from '../../styled/styled'
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import { api } from '../../services/api';
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { api } from '../../services/api'
 
 const schema = yup.object({    
     email : yup.string().required('email obrigátorio').matches('@+\.'),
@@ -13,8 +13,7 @@ const schema = yup.object({
 }).required()
 
 
-
-function LoginPage (){
+function LoginPage ({setUser}){
 
     const {register, handleSubmit, formState:{errors} } = useForm({
         resolver: yupResolver(schema)
@@ -26,7 +25,10 @@ function LoginPage (){
 
         try {
             await api.post('/sessions', data)
-            .then(response => localStorage.setItem('user', response.data.token))
+            .then(response => {
+                localStorage.setItem('user', response.data.token)
+                setUser(response.data.user)
+            })
             
             navigate('/dashboard')
             
@@ -43,15 +45,15 @@ function LoginPage (){
     return (
         <>
         <HeaderLogin>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt='logo' />
         </HeaderLogin>
         <FormLogin onSubmit={handleSubmit(onSubmit)}>
             <h2>Login</h2>
-                <label htmlFor="email">Email</label>
-                    <input type="email" placeholder='Digite seu email' {...register('email')}/>
+                <label htmlFor='email'>Email</label>
+                    <input type='email' placeholder='Digite seu email' {...register('email')}/>
                     <p>{errors.email ?.message}</p>
-                <label htmlFor="password">Senha</label>
-                    <input type="password" placeholder='Digite sua senha' {...register('password')}/>
+                <label htmlFor='password'>Senha</label>
+                    <input type='password' placeholder='Digite sua senha' {...register('password')}/>
                     <p>{errors.password ?.message}</p>
                 <button type='submit' className='enter'>Entrar</button>
 

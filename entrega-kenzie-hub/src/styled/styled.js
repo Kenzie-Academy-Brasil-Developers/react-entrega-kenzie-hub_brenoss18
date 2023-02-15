@@ -12,8 +12,10 @@ import styled from "styled-components";
     width: 100vw;
     height: 100vh;
 `
-export const Header = styled.header`
-    
+export const HeaderDashboard = styled.header`
+   
+    margin : 0 auto;
+
     div {
         display: flex;
         align-items: center;
@@ -42,6 +44,49 @@ export const Header = styled.header`
         padding: 10px;
         border-radius: 4px;
         text-align: center;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: #6E6E6E;
+    }
+`   
+export const Header = styled.header`
+    
+    width: 370px;
+    margin : 0 auto;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    @media(min-width: 768px){
+        justify-content: space-around;
+    }
+    }
+
+    img {
+        margin-top: 57px;
+        margin-left: 25px;
+        @media (min-width: 768px){
+            margin-left: 35px;
+        }
+    }
+    button {
+        margin-top: 57px;
+        margin-right: 12px;
+        width: 79px;
+        height: 31px;
+        background-color: #212529;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: #6E6E6E;
     }
 `
 export const RegisterSection = styled.section`
@@ -100,11 +145,13 @@ export const RegisterSection = styled.section`
             border: none;
             border-radius: 4px;
             color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #803B3B;
         }
     }
 `
-
-// FORMULÁRIO DE LOGIN//
 
 export const HeaderLogin = styled.header`
        display: flex;
@@ -161,6 +208,10 @@ export const FormLogin = styled.form`
         border: none;
         border-radius: 4px;
         margin-bottom: 27px;
+        cursor: pointer;
+    }
+    .enter:hover{
+        background-color: #DE749B;
     }
     button {
         width: 264px;
@@ -170,6 +221,11 @@ export const FormLogin = styled.form`
         background-color: #868E96;
         border: none;
         border-radius: 4px;
+        cursor: pointer;
+        transition: 1s;
+    }
+    button:hover {
+        background-color: #343B41;
     }
     p {
         text-align: center;
