@@ -1,5 +1,4 @@
-import logo from '../../assets/Logo.svg'
-import { Header, RegisterSection } from '../../styled/styled'
+import { RegisterSection } from '../../styled/globalStyled'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,6 +6,8 @@ import * as yup from 'yup'
 import { api } from '../../services/api'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import HeaderComponent from '../../components/header/header'
+import InputComponent from '../../components/inputs/inputs'
 
 
  const schema = yup.object({
@@ -26,11 +27,10 @@ function RegisterPage (){
     const navigate = useNavigate()
 
    async function onSubmit (data){
-        console.log(data)
 
         try {
             await api.post('/users', data)
-            navigate('/login')
+            navigate('/')
             toast('Conta criada com sucesso')
             
         } catch (error) {
@@ -40,17 +40,12 @@ function RegisterPage (){
 
     }
     function toLogin (){
-        navigate('/login')
+        navigate('/')
     }
 
     return (
         <>
-        <Header>
-            <div className='itensHeader'>
-                <img src={logo} alt="" />
-                <button onClick={toLogin}>Voltar</button>
-            </div>
-        </Header>
+        <HeaderComponent toLogin={toLogin} TextButton={'Voltar'}/>
 
         <RegisterSection className='registerSection'>
             <h2>Crie sua conta</h2>
@@ -59,12 +54,9 @@ function RegisterPage (){
                     <label htmlFor='name'>nome</label>
                         <input type='text' placeholder='Digite aqui o seu nome' {...register('name')}/>
                             <p>{errors.name ?.message}</p>
-                    <label htmlFor='email'>Email</label>
-                        <input type='email' placeholder='Digite aqui seu Email' {...register('email')}/>
-                            <p>{errors.email ?.message}</p>
-                    <label htmlFor='password'>Senha</label>
-                        <input type='password' placeholder='Digite aqui sua Senha' {...register('password')} />
-                            <p>{errors.password ?.message}</p>
+
+                        <InputComponent emailRegister={register} senhaRegister={register} errors={errors}/>
+
                     <label htmlFor='passwordConfirm'>Confirmar Senha</label>
                         <input type='password' placeholder='Digite sua senha novamente'/>
                     <label htmlFor='bio'>Bio</label>

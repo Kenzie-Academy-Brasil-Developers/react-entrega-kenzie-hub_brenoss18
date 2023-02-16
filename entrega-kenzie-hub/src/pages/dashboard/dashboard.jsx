@@ -1,22 +1,19 @@
-import { Header, HeaderDashboard, Main, Section } from '../../styled/styled'
-import logo from '../../assets/Logo.svg'
+import { Main, Section } from '../../styled/globalStyled'
 import { useNavigate } from 'react-router-dom'
+import HeaderComponent from '../../components/header/header'
 
 function DashBoard ({user}){
     const navigate = useNavigate()
+
     function logoOut (){
         
         localStorage.clear
         navigate('/')
     }
+
     return (
         <>
-        <HeaderDashboard>
-            <div className='itensHeader'>
-                <img src={logo} alt='' />
-                <button onClick={logoOut}>Sair</button>
-            </div>
-        </HeaderDashboard>
+        <HeaderComponent toLogin={logoOut} TextButton={'sair'}/>
 
         <Main>
             <h3>Olá, {user.name}</h3>

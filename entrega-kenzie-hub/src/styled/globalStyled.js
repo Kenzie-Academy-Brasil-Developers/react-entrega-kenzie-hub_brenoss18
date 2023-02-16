@@ -1,14 +1,22 @@
-import styled from "styled-components";
+import styled, {createGlobalStyle} from "styled-components";
 
- const body = document.querySelector('body')
- body.style.padding = 0
- body.style.margin = 0
- body.style.background = '#121214'
+  const GlobalStyle = createGlobalStyle`
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background-color: #121214;
+        font-family: 'Inter', sans-serif;
+        width: 100vw;
+        height: 100vh;
+        overflow-x: hidden;
+    }
+ ` 
+export default GlobalStyle
 
  export const DivApp = styled.div`
-    padding: 0;
-    margin: 0;
-    background-color: #121214;
     width: 100vw;
     height: 100vh;
 `
@@ -172,6 +180,7 @@ export const FormLogin = styled.form`
     align-items: center;
     background-color: #212529;
     width: 296px;
+    height: 500px;
     margin: 20px auto;
     padding-bottom: 33px;
     border-radius: 6px;
