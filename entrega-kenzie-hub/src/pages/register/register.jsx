@@ -1,47 +1,16 @@
 import { RegisterSection } from '../../styled/globalStyled'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { api } from '../../services/api'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import HeaderComponent from '../../components/header/header'
 import InputComponent from '../../components/inputs/inputs'
+import { useContext } from 'react'
+import { userContext } from '../../contexts/userContexts/userContexts'
 
-
- const schema = yup.object({
-    name : yup.string().required('nome obrigátorio'),
-    email : yup.string().required('email obrigátorio').matches('@+\.'),
-    password : yup.string().required('digite uma senha').matches(/(\d)/, 'Deve conter no mínimo 6 números'),
-    bio : yup.string().required('fale sobre você'),
-    contact : yup.string().required('Contato Obrigátorio'),
-
-}).required()
+ 
 
 function RegisterPage (){
-
-    const {register, handleSubmit, formState:{errors} } = useForm({
-        resolver: yupResolver(schema)
-    })
-    const navigate = useNavigate()
-
-   async function onSubmit (data){
-
-        try {
-            await api.post('/users', data)
-            navigate('/')
-            toast('Conta criada com sucesso')
-            
-        } catch (error) {
-            console.log(error)
-            toast('Ops ! algo deu errado.')
-        }
-
-    }
-    function toLogin (){
-        navigate('/')
-    }
+    
+    const {onSubmit, register, handleSubmit, errors, toLogin} = useContext(userContext)
 
     return (
         <>

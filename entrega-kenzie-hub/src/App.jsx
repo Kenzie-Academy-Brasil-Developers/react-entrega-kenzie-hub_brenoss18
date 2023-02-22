@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import {Routes, Route, Link} from 'react-router-dom'
 import DashBoard from './pages/dashboard/dashboard'
 import RegisterPage from './pages/register/register'
@@ -9,7 +8,7 @@ import  GlobalStyle, {DivApp}  from './styled/globalStyled'
 
 
 function App() {
-  const [user, setUser] = useState('')
+  
   return (
     
     <>
@@ -18,8 +17,8 @@ function App() {
     <DivApp className="App">
       <Routes>
         <Route path='/register' element={<RegisterPage/>}/>
-        <Route path='/dashboard' element={<DashBoard user={user}/>}/>
-        <Route path='/' element={<LoginPage setUser={setUser}/>} />
+        <Route path='/dashboard' element={<DashBoard/>}/>
+        <Route path='/' element={<LoginPage/>} />
       </Routes>
     </DivApp>
 
