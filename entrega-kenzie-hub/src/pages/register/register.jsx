@@ -36,12 +36,12 @@ function RegisterPage (){
                         <p>{errors.contact ?.message}</p>
                     <label htmlFor='module'>Selecionar Módulo</label>
                         <select name='module' {...register('course_module')}>
-                            <option value='moduleOne'>Primeiro Módulo</option>
-                            <option value='moduleTwo'>Segundo Módulo</option>
-                            <option value='moduleThree'>Terceiro Módulo</option>
-                            <option value='moduleFour'>Quarto Módulo</option>
-                            <option value='moduleFive'>Quinto Módulo</option>
-                            <option value='moduleSix'>Sexto Módulo</option>
+                            <option value='Primeiro Módulo'>Primeiro Módulo</option>
+                            <option value='Segundo Módulo'>Segundo Módulo</option>
+                            <option value='Terceiro Módulo'>Terceiro Módulo</option>
+                            <option value='Quarto Módulo'>Quarto Módulo</option>
+                            <option value='Quinto Módulo'>Quinto Módulo</option>
+                            <option value='Sexto Módulo'>Sexto Módulo</option>
                         </select>
                     <button type='submit'>Cadastrar</button>
                     <ToastContainer/>                  

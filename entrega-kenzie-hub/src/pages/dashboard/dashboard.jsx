@@ -1,28 +1,26 @@
 import { Main, Section } from '../../styled/globalStyled'
 import { useNavigate } from 'react-router-dom'
 import HeaderComponent from '../../components/header/header'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { userContext } from '../../contexts/userContexts/userContexts'
 import { SectionTec } from './dashboardStyled'
-import ModalCadastrarTech from '../../components/modal/modalCad'
+import { TechContext } from '../../contexts/TechContext/TechContext'
+import CreateTech from '../../components/CreateTech/CreateTech'
+import UpTech from '../../components/UpTech/upTech'
 
 function DashBoard (){
 
     const {user, setUser} = useContext(userContext)
+    const {modalAtt, modalForm, setModalAtt, setModalForm, currentTech, setCurrentTech} = useContext(TechContext)
 
     const navigate = useNavigate()
 
-    function logoOut (){
-        
+    function logoOut (){ 
         setUser('')
         localStorage.removeItem('user')
         navigate('/')
     }
-    function HiddenModal (){
-        const modal = document.querySelector('.modal')
-        modal.classList.add('hidden')
-    }
-    
+
     return (
         <>
         <HeaderComponent toLogin={logoOut} TextButton={'sair'}/>
@@ -32,43 +30,27 @@ function DashBoard (){
                 <p>{user.course_module}</p>
 
             </Main>
-                    <Section>
-                        <h3>Que Pena Estamos em desenvolvimento :( </h3>
-                        <p>Nossa aplicação está em desenvolvimento,
-                            em breve teremos novidades...
-                        </p>
-                    </Section>
 
         <SectionTec className='tec'>
-            <div className="tecInfors">
+            <div>
                 <p>Tecnologias</p>
-                                    <form className='modal hidden'>
-                                        <div>
-                                        <h3>Cadastrar Tecnologia</h3>
-                                        <p className='closeModal' onClick={HiddenModal}>x</p>
-                                        <label htmlFor="name">nome</label>
-                                            <input type="text" placeholder="linguagem"/>
-                                        <label htmlFor="status">Selecionar status</label>
-                                            <select name="status" id="">
-                                                <option value="iniciante">Iniciante</option>
-                                                <option value="intermediário">intermediário</option>
-                                                <option value="avançado">avançado</option>
-                                            </select>
-                                        <button>Cadastrar Tecnologia</button>    
-                                        </div>
-                                    </form>
-
-                <button onClick={() => ModalCadastrarTech()}>+</button>
-
+                <button onClick={()=>setModalForm(true)}>+</button>
             </div>
-
-
+            {modalForm ? <CreateTech/>: null}
+            {modalAtt ? <UpTech/>: null}
+            
 
             <ul>
-                <li>
-                    <p>{}</p>
-                    <p>{}</p>
-                </li>
+                {user.techs.map((element, index) => {
+                return  <li key={index} onClick={()=> {
+                    setCurrentTech(element)
+                    setModalAtt(true)
+                    }}>
+                            <p>{element.title}</p>
+                            <p className='statusTech'>{element.status}</p>
+                        </li>
+                })}
+                
             </ul>
 
         </SectionTec>

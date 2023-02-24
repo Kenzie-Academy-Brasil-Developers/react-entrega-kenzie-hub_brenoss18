@@ -21,6 +21,7 @@ export const SectionTec = styled.section`
             border: none;
             font-weight: 700;
             font-size: 20px;
+            cursor: pointer;
         }
     }
     .hidden {
@@ -51,6 +52,7 @@ export const SectionTec = styled.section`
             position: absolute;
             right: 10px;
             top: 15px;
+            cursor: pointer;
         }
         h3 {
             background-color: #343B41;
@@ -101,9 +103,51 @@ export const SectionTec = styled.section`
             color: #fff;
             margin: 16px auto;
             border-radius: 4px;
-
+            cursor: pointer;
         }
         }
+        .saverAlt {
+            background-color: #59323F;
+        }
+        .btnExcluir {
+            background-color: #868E96;
+        }
+    }
+    ul {
+        background-color: #212529;
+        margin: 28px auto;
+        width: 90%;
+        height: 416px;
+        @media (min-width: 700px) {
+            width: 70%;
+        }
+        li {
+            color: #fff;
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            padding: 12px 5px;
+            text-align: center;
+            background-color: #121214;
+            margin: 22px auto;
+            
+            p{
+                font-size: 14px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            .statusTech {
+                font-size: 12px;
+                font-weight: 400;
+                color: #868E96;
+                cursor: pointer;
+            }
+            .statusTech:hover {
+                color: #fff;
+            }
+        }
+        
     }
 
 `
